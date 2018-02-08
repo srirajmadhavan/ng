@@ -21,3 +21,15 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+## Capabilities
+
+. Modal Service
+. Router Links
+. Throbber Service
+. Signal R integration
+. Router Transitions Animations
+. Translations
+. APP Initializer
+. Dynamic Component injection
+. Toastr - through page change
