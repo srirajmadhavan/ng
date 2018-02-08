@@ -1,0 +1,37 @@
+<p>Subscription works!</p>
+<div class="card-deck">
+        <div class="card block">
+          <!-- <img class="card-img-top" src="http://placehold.it/64" alt="Card image cap"> -->
+          <div class="card-body">
+            <h5 class="card-title">{{'demo.title' | translate }}</h5>
+            <p class="card-text">{{'demo.text' | translate }}</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+        <div class="card block">
+          <!-- <img class="card-img-top" src="http://placehold.it/64" alt="Card image cap"> -->
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+        <div class="card block">
+          <!-- <img class="card-img-top" src="http://placehold.it/64" alt="Card image cap"> -->
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.
+                <ng-template #dynamicInserts></ng-template>
+            </p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" (click)="loadComponent()">Load Dynamic Component</button>

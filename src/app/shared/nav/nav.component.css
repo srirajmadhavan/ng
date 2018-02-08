@@ -1,0 +1,8 @@
+.notification-count{
+    position: relative;
+    top: -1rem;
+    right: 1rem;
+}
+.nav-link{
+    padding: 0.5rem 0.3rem;
+}

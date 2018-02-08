@@ -1,0 +1,104 @@
+<p>
+  dashboard works!
+</p>
+<div class="card-deck">
+    <div class="card wave">
+      <!-- <img class="card-img-top" src="http://placehold.it/64" alt="Card image cap"> -->
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+      <div class="card-footer" (click)="openModal('throbber1')">
+        <small class="text-muted">Last updated 3 mins ago</small>
+      </div>
+    </div>
+    <div class="card wave">
+      <!-- <img class="card-img-top" src="http://placehold.it/64" alt="Card image cap"> -->
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+      </div>
+      <div class="card-footer" (click)="openModal('throbber2')">
+        <small class="text-muted">Last updated 3 mins ago</small>
+      </div>
+    </div>
+    <div class="card wave">
+      <!-- <img class="card-img-top" src="http://placehold.it/64" alt="Card image cap"> -->
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+      </div>
+      <div class="card-footer" (click)="openModal('throbber3')">
+        <small class="text-muted">Last updated 3 mins ago</small>
+      </div>
+    </div>
+    {{somedata | json}}
+    <hr>
+    {{otherdata | json}}
+  </div>
+
+  <modal id="throbber2">
+      <div class="modal" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Modal title throbber 2</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Modal body text goes here.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal('throbber')">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </modal>
+
+    <modal id="throbber1">
+        <div class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Modal title throbber1</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal('throbber1')">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+      </modal>
+
+      <modal id="throbber3">
+          <div class="modal" tabindex="-1" role="dialog">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Modal title throbber3</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Modal body text goes here.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal('throbber1')">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </modal>

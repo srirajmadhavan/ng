@@ -1,0 +1,4 @@
+<ul class="list-group ">
+  <li class="list-group-item border-right-0 border-left-0" *ngFor="let nav of menuItems; let isFirst = first; let isLast = last" [ngClass]="{'border-bottom-0': isLast, 'border-top-0' : isFirst}">{{first}}
+    <a  routerLinkActive="selected" [routerLink]="[nav.path]"><i class="fa fa-1x fa-{{nav.icon}}"></i> {{nav.title}}</a></li>
+</ul>
