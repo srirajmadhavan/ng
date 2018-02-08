@@ -5,6 +5,7 @@ import { Observer } from 'rxjs/Observer';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { ISubscription } from 'rxjs/Subscription';
 import { DynamicComponent } from '../shared/dynamic/dynamic.component';
+import { SignalRService } from '../core/signalR.service';
 
 
 @Component({
@@ -16,17 +17,25 @@ export class SubscriptionComponent implements OnInit, OnDestroy {
 
   private numberSub: ISubscription;
   private customSub: ISubscription;
+  private signalData: ISubscription;
 
   @ViewChild('dynamicInserts', { read: ViewContainerRef }) dynamicInserts: ViewContainerRef;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
+  constructor(private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef,
+    private _signalRService: SignalRService) { }
 
   ngOnDestroy(): void {
     this.numberSub.unsubscribe();
     this.customSub.unsubscribe();
+    this.signalData.unsubscribe();
   }
 
   ngOnInit() {
+
+    this.signalData = this._signalRService.data.subscribe((s) => {
+      console.log('subscription component recieved a data change: ' + JSON.stringify(s));
+    });
+
     const myObs = Observable.create((observer: Observer<string>) => {
       setTimeout(() => {
         observer.next('first package');

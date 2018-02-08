@@ -12,8 +12,11 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 //   HttpBatchConfigurationCollection,
 //   HttpBatcher
 // } from 'ngx-http-batcher';
-import { ModalService } from './core/modal/modal.service';
 
+import { SignalRModule } from 'ng2-signalr';
+import { SignalRConfiguration } from 'ng2-signalr';
+
+import { ModalService } from './core/modal/modal.service';
 
 import { CoreModule } from './core/core.module';
 import { appRoutes } from './app-routing.module';
@@ -34,6 +37,7 @@ import { StartupService } from './core/startup.service';
     BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes, { useHash: true, enableTracing: false }),
+    SignalRModule.forRoot(createSignalRConfig),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -90,4 +94,13 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 export function startupServiceFactory(startupService: StartupService) {
   return () => startupService.load();
+}
+
+export function createSignalRConfig(): SignalRConfiguration {
+  const c = new SignalRConfiguration();
+  c.hubName = 'usageLogTicker';
+  // c.qs = { user: 'donald' };
+  c.url = 'http://localhost:52872';
+  c.logging = false;
+  return c;
 }
