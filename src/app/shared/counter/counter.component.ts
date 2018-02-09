@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ElementRef, Input, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
 
 declare var Odometer: any;
 
@@ -7,10 +7,10 @@ declare var Odometer: any;
   templateUrl: './counter.component.html',
   styleUrls: ['./counter.component.css']
 })
-export class CounterComponent implements OnInit {
+export class CounterComponent implements OnInit, OnChanges {
   constructor(private element: ElementRef) { }
   private od: any;
-  @Input() value = 333555;
+  @Input() value = 0;
 
   ngOnInit() {
     const el = this.element.nativeElement.querySelector('.the-element');
@@ -22,9 +22,18 @@ export class CounterComponent implements OnInit {
     });
     this.od.update();
 
-    setInterval(() => {
-      this.value += 124;
-      // this.od.update(this.value);
-    }, 3000);
+    // setInterval(() => {
+    //   this.value += 124;
+    //   // this.od.update(this.value);
+    // }, 3000);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    const value: SimpleChange = changes.value;
+    if (value && !value.firstChange) {
+      console.log('prev value: ', value.previousValue);
+      console.log('got name: ', value.currentValue);
+      this.od.update(value.currentValue);
+    }
   }
 }

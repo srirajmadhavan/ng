@@ -3,16 +3,17 @@
     <app-nav></app-nav>
     <app-header></app-header>
   </div>
-  <div class="row">
-    <div class="col-3">
+  <div class="row mt-2">
+    <div class="col-2">
       <app-sidebar></app-sidebar>
     </div>
-    <div class="col-9" [@routerTransition]="getState(o)">
+    <div class="col-10" [@routerTransition]="getState(o)">
         <notification></notification>
       <router-outlet #o="outlet"></router-outlet>
     </div>
   </div>
 </div>
+
 <modal id="throbber">
   <div class="modal" data-backdrop="static" role="dialog" style="position:absolute;top:30%; left:20%;">
       <h1>{{blocking}}</h1>

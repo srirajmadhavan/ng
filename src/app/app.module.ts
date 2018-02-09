@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { NgModule, APP_INITIALIZER, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Http, XHRBackend, RequestOptions, Request } from '@angular/http';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -43,7 +43,7 @@ import { StartupService } from './core/startup.service';
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
-      }
+      },
     }),
     CoreModule,
     DashboardModule,
@@ -51,6 +51,7 @@ import { StartupService } from './core/startup.service';
     SubscriptionModule,
     SharedModule
   ],
+  schemas: [NO_ERRORS_SCHEMA],
   providers: [
     // {
     //   provide: HttpBatchConfigurationCollection,
@@ -100,7 +101,7 @@ export function createSignalRConfig(): SignalRConfiguration {
   const c = new SignalRConfiguration();
   c.hubName = 'usageLogTicker';
   // c.qs = { user: 'donald' };
-  c.url = 'http://localhost:52872';
+  c.url = 'http://dcsmadhaven.azurewebsites.net/';
   c.logging = false;
   return c;
 }

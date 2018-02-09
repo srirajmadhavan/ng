@@ -20,7 +20,11 @@ export class NavComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.startupService.startupData;
-    this._signalRService.connectionStatus.subscribe((s) => console.log(s));
+    this._signalRService.connectionStatus.subscribe((s) => {
+      if (s === 'disconnected') {
+        this.makeDead();
+      }
+    });
     this.signalData = this._signalRService.data.subscribe((s) => {
       this.makeHot();
     });
@@ -31,6 +35,10 @@ export class NavComponent implements OnInit {
     setTimeout(() => {
       this.temperature = 'cold';
     }, 3000);
+  }
+
+  makeDead() {
+    this.temperature = 'dead';
   }
 
   onLanguage(language: string) {

@@ -18,7 +18,7 @@ export class SignalRService {
             this.connectionStatus.next(s.name);
         });
         this.connection.start().then((c) => {
-            this.addLogListener = c.listenFor('addUsageLog');
+            this.addLogListener = c.listenFor('updateUsageCounts');
             this.addLogListener.subscribe((d) => {
                 this.data.next(d);
             });

@@ -2,5 +2,25 @@
 	"demo": {
 		"text": "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
 		"title": "Card title1"
+	},
+	"dashboard": {
+		"ApplicationLaunch": "Application Launch",
+		"ApplicationLaunchText": "Application has been launched on a browser or device",
+		"Addendum": "Addendum",
+		"AddendumText": "Addendum Add/Update",
+		"ContactActivity": "Contact Activity",
+		"ContactActivityText": "Contact Activity saved",
+		"ExportData": "Data Export",
+		"ExportDataText": "Application Exported Data",
+		"InsideSales": "Inside Sales - Leads",
+		"InsideSalesText": "Application Inside Sales Activity",
+		"LocationLog": "Location Log",
+		"LocationLogText": "Device location log",
+		"PhoneCall": "Phone Calls",
+		"PhoneCallText": "Application Phone Calls",
+		"Pipeline": "Pipelines",
+		"PipelineText": "Application Pipeline Activitites",
+		"Proposal": "Proposal",
+		"ProposalText": "Application Proposal Activitites"
 	}
 }
