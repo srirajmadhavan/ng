@@ -7,6 +7,7 @@ import { CoreModule } from '../core/core.module';
 import { RouterModule } from '@angular/router';
 import { StartupService } from '../core/startup.service';
 import { DynamicComponent } from './dynamic/dynamic.component';
+import { CounterComponent } from './counter/counter.component';
 
 @NgModule({
     imports: [
@@ -14,8 +15,8 @@ import { DynamicComponent } from './dynamic/dynamic.component';
         CommonModule,
         RouterModule
     ],
-    exports: [SidebarComponent, HeaderComponent, NavComponent],
-    declarations: [SidebarComponent, HeaderComponent, NavComponent, DynamicComponent],
+    exports: [SidebarComponent, HeaderComponent, NavComponent, CounterComponent],
+    declarations: [SidebarComponent, HeaderComponent, NavComponent, DynamicComponent, CounterComponent],
     providers: [StartupService]
 })
 export class SharedModule { }
