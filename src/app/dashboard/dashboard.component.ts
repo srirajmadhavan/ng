@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   };
 
   constructor(private modalService: ModalService, private http: HttpService, private _signalRService: SignalRService) {
-    http.get('http://dcsmadhaven.azurewebsites.net/api/count', { throbbing: true })
+    http.get('https://masterapi-forall.azurewebsites.net/read/count', { throbbing: true })
       .subscribe((response) => {
         this.logCount = response.json();
       });
