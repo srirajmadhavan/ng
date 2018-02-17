@@ -21,18 +21,11 @@ export class CounterComponent implements OnInit, OnChanges {
       theme: 'default'
     });
     this.od.update();
-
-    // setInterval(() => {
-    //   this.value += 124;
-    //   // this.od.update(this.value);
-    // }, 3000);
   }
 
   ngOnChanges(changes: SimpleChanges) {
     const value: SimpleChange = changes.value;
     if (value && !value.firstChange) {
-      console.log('prev value: ', value.previousValue);
-      console.log('got name: ', value.currentValue);
       this.od.update(value.currentValue);
     }
   }

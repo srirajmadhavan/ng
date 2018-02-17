@@ -4,7 +4,7 @@ const query = (s, a, o = { optional: true }) => q(s, a, o);
 export const routerTransition =
     trigger('routerTransition', [
         transition('* <=> *', [
-            query(':enter, :leave', style({ position: 'fixed', width: '60%' })),
+            query(':enter, :leave', style({ position: 'fixed', width: '100%' })),
             query(':enter', style({ opacity: '0', transform: 'scale(0.0)' })),
             sequence([
                 query(':leave', animateChild()),

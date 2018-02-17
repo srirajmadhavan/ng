@@ -14,9 +14,9 @@ export class InvitationComponent implements OnInit, OnDestroy {
   constructor(private notificationService: NotificationService, private _signalRService: SignalRService) { }
 
   ngOnInit() {
-    this.signalData = this._signalRService.data.subscribe((s) => {
-      console.log('Invitation component recieved a data change: ' + JSON.stringify(s));
-    });
+    // this.signalData = this._signalRService.data.subscribe((s) => {
+    //   console.log('Invitation component recieved a data change: ' + JSON.stringify(s));
+    // });
   }
 
   ngOnDestroy(): void {

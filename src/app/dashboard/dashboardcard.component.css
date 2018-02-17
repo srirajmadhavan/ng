@@ -8,3 +8,7 @@
 .card-wrapper{
     min-height: unset!important;
 }
+
+.card-wrapper .back{
+    padding: 0rem;
+}

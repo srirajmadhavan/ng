@@ -101,7 +101,7 @@ export function createSignalRConfig(): SignalRConfiguration {
   const c = new SignalRConfiguration();
   c.hubName = 'usageLogTicker';
   // c.qs = { user: 'donald' };
-  c.url = 'https://masterapi-forall.azurewebsites.net/';
+  c.url = 'http://localhost:81/';
   c.logging = false;
   return c;
 }

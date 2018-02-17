@@ -32,9 +32,9 @@ export class SubscriptionComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.signalData = this._signalRService.data.subscribe((s) => {
-      console.log('subscription component recieved a data change: ' + JSON.stringify(s));
-    });
+    // this.signalData = this._signalRService.data.subscribe((s) => {
+    //   console.log('subscription component recieved a data change: ' + JSON.stringify(s));
+    // });
 
     const myObs = Observable.create((observer: Observer<string>) => {
       setTimeout(() => {

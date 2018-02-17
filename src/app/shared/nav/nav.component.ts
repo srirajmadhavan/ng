@@ -19,15 +19,17 @@ export class NavComponent implements OnInit {
     private _signalRService: SignalRService) { }
 
   ngOnInit() {
-    this.user = this.startupService.startupData;
+    this.user = this.startupService.startupData.data;
     this._signalRService.connectionStatus.subscribe((s) => {
       if (s === 'disconnected') {
-        this.makeDead();
+        this.temperature = 'dead';
+      } else {
+        this.temperature = 'cold';
       }
     });
-    this.signalData = this._signalRService.data.subscribe((s) => {
-      this.makeHot();
-    });
+    // this.signalData = this._signalRService.data.subscribe((s) => {
+    //   this.makeHot();
+    // });
   }
 
   makeHot() {

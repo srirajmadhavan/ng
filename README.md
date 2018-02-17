@@ -33,3 +33,5 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 . APP Initializer
 . Dynamic Component injection
 . Toastr - through page change
+
+git push origin master

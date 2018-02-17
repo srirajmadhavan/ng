@@ -1,18 +1,28 @@
-<div class="container-fluid">
+<!--<div class="container-fluid">
   <div class="app-navs">
-    <app-nav></app-nav>
     <app-header></app-header>
   </div>
   <div class="row mt-2">
     <div class="col-2">
       <app-sidebar></app-sidebar>
-    </div>
+    </div> 
     <div class="col-10" [@routerTransition]="getState(o)">
         <notification></notification>
       <router-outlet #o="outlet"></router-outlet>
     </div>
   </div>
-</div>
+</div> -->
+
+<header>
+  <app-nav></app-nav>
+</header>
+<main>
+  <div class="container-fluid" [@routerTransition]="getState(o)">
+    <notification></notification>
+    <router-outlet #o="outlet"></router-outlet>
+  </div>
+</main>
+<footer></footer>
 
 <modal id="throbber">
   <div class="modal" data-backdrop="static" role="dialog" style="position:absolute;top:30%; left:20%;">

@@ -5,7 +5,9 @@ import { ModalService } from '../core/modal/modal.service';
 import { HttpService } from '../core/http.service';
 import { Subscription } from 'rxjs/Subscription';
 import { SignalRService } from '../core/signalR.service';
-import { LogCount } from './dashboard.model';
+import { LogCount, CardViewModel } from './dashboard.model';
+import { Subject, SubjectSubscriber } from 'rxjs/Subject';
+import { SignalRConnection } from 'ng2-signalr/src/services/connection/signalr.connection';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,33 +21,18 @@ import { LogCount } from './dashboard.model';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 
-  private signalData: Subscription;
+  private signalData = new Subject();
 
-  public somedata: string[];
-  public otherdata: string[];
-
-  public logCount: LogCount = {
-    Addendum: 0,
-    ApplicationLaunch: 0,
-    ContactActivity: 0,
-    ExportData: 0,
-    InsideSales: 0,
-    LocationLog: 0,
-    PhoneCall: 0,
-    Pipeline: 0,
-    Proposal: 0
-  };
+  public cardViewModel: CardViewModel[] = [];
 
   constructor(private modalService: ModalService, private http: HttpService, private _signalRService: SignalRService) {
-    http.get('https://masterapi-forall.azurewebsites.net/read/count', { throbbing: true })
-      .subscribe((response) => {
-        this.logCount = response.json();
+    const cardEvents = ['leadCountCard'];
+    this._signalRService.listener.subscribe((s: SignalRConnection) => {
+      this.cardViewModel = [];
+      cardEvents.forEach(card => {
+        this.cardViewModel.push(new CardViewModel(s.listenFor(card)));
       });
-    // http.get('http://localhost:81/api/values', { throbbing: true })
-    //   .subscribe(response => this.otherdata = response.json());
-
-    this.signalData = this._signalRService.data.subscribe((s: LogCount) => {
-      this.logCount = s;
+      s.invoke('dashboardpoke').then((p) => { });
     });
   }
 
@@ -64,3 +51,5 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.modalService.close(id);
   }
 }
+
+
