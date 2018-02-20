@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public cardViewModel: CardViewModel[] = [];
 
   constructor(private modalService: ModalService, private http: HttpService, private _signalRService: SignalRService) {
-    const cardEvents = ['leadCountCard'];
+    const cardEvents = ['leadCountCard', 'applicationLaunchCountCard'];
     this._signalRService.listener.subscribe((s: SignalRConnection) => {
       this.cardViewModel = [];
       cardEvents.forEach(card => {

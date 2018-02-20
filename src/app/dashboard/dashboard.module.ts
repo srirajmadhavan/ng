@@ -8,6 +8,7 @@ import { HttpService } from '../core/http.service';
 import { SharedModule } from '../shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { DashboardCardComponent } from './dashboardcard.component';
+import { DetailComponent } from './detail.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { DashboardCardComponent } from './dashboardcard.component';
     RouterModule.forChild(DashboardRoutes)
   ],
   providers: [HttpService],
-  declarations: [DashboardComponent, DashboardCardComponent]
+  declarations: [DashboardComponent, DashboardCardComponent, DetailComponent]
 })
 export class DashboardModule { }

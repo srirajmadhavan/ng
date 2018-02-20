@@ -19,7 +19,7 @@ export class StartupService {
         this._startupData = null;
 
         return this.http
-            .get('http://localhost:81/default/init', { throbbing: false })
+            .get('http://masterapi-forall.azurewebsites.net/default/init', { throbbing: false })
             .map((res: Response) => res.json())
             .toPromise()
             .then((data: any) => {

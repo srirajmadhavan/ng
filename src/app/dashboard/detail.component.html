@@ -1,0 +1,129 @@
+<!--Card-->
+<div class="card card-cascade narrower">
+  <!--Section: Chart-->
+  <section>
+
+    <!--Grid row-->
+    <div class="row">
+
+      <!--Grid column-->
+      <div class="col-xl-5 col-lg-12 mr-0">
+
+        <!--Card image-->
+        <div class="view gradient-card-header blue-gradient">
+          <h2 class="h2-responsive mb-0">Location Log</h2>
+        </div>
+        <!--/Card image-->
+        <!--Card content-->
+        <div class="card-body pb-0">
+
+          <!--Panel data-->
+          <div class="row card-body pt-3">
+
+            <!--First column-->
+            <div class="col-md-6">
+
+              <!--Date select-->
+              <p class="lead">
+                <span class="badge info-color p-2">Data range</span>
+              </p>
+              <div class="select-wrapper mdb-select colorful-select dropdown-info">
+                <span class="caret">▼</span>
+                <input type="text" class="select-dropdown" readonly="true" data-activates="select-options-924cba7a-976a-426b-af1a-285e0460b20d"
+                  value="Choose time period">
+                <ul id="select-options-924cba7a-976a-426b-af1a-285e0460b20d" class="dropdown-content select-dropdown ">
+                  <li class="disabled ">
+                    <span class="filtrable">Choose time period</span>
+                  </li>
+                  <li class="">
+                    <span class="filtrable">Today</span>
+                  </li>
+                  <li class="">
+                    <span class="filtrable">Yesterday</span>
+                  </li>
+                  <li class="">
+                    <span class="filtrable">Last 7 days</span>
+                  </li>
+                  <li class="">
+                    <span class="filtrable">Last 30 days</span>
+                  </li>
+                  <li class="">
+                    <span class="filtrable">Last week</span>
+                  </li>
+                  <li class="">
+                    <span class="filtrable">Last month</span>
+                  </li>
+                </ul>
+                <select class="mdb-select colorful-select dropdown-info initialized">
+                  <option value="" disabled="" selected="">Choose time period</option>
+                  <option value="1">Today</option>
+                  <option value="2">Yesterday</option>
+                  <option value="3">Last 7 days</option>
+                  <option value="3">Last 30 days</option>
+                  <option value="3">Last week</option>
+                  <option value="3">Last month</option>
+                </select>
+              </div>
+
+              <!--Date pickers-->
+              <p class="lead mt-5">
+                <span class="badge info-color p-2">Custom date</span>
+              </p>
+              <br>
+              <div class="md-form">
+                <input placeholder="Selected date" type="text" id="from" class="form-control datepicker picker__input" readonly="" aria-haspopup="true"
+                  aria-expanded="false" aria-readonly="false" aria-owns="from_root">
+                <label for="date-picker-example" class="active">From</label>
+              </div>
+              <div class="md-form">
+                <input placeholder="Selected date" type="text" id="to" class="form-control datepicker picker__input" readonly="" aria-haspopup="true"
+                  aria-expanded="false" aria-readonly="false" aria-owns="to_root">
+                <label for="date-picker-example" class="active">To</label>
+              </div>
+
+            </div>
+            <!--/First column-->
+
+            <!--Second column-->
+            <div class="col-md-6 text-center">
+                <div class="form-group" *ngFor="let card of cards">
+                    <input type="checkbox" id="checkbox1">
+                    <label for="checkbox1">Classic checkbox</label>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="checkbox2">
+                    <label for="checkbox2">Classic checkbox</label>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="checkbox3">
+                    <label for="checkbox3">Classic checkbox</label>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="checkbox4">
+                    <label for="checkbox4">Classic checkbox</label>
+                </div>
+              <!--Summary-->
+            </div>
+            <!--/Second column-->
+          </div>
+          <!--/Panel data-->
+        </div>
+        <!--/.Card content-->
+      </div>
+      <!--Grid column-->
+      <!--Grid column-->
+      <div class="col-xl-7 col-lg-12 mb-r">
+        <!--Card image-->
+        <div class="view gradient-card-header indigo">
+          <!-- Chart -->
+          <canvas id="lineChart-main" height="590" style="display: block; width: 1013px; height: 590px;" width="1013"></canvas>
+        </div>
+        <!--/Card image-->
+      </div>
+      <!--Grid column-->
+    </div>
+    <!--Grid row-->
+  </section>
+  <!--Section: Chart-->
+</div>
+<!--/.Card-->
