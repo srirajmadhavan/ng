@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, Input, Output, ElementRef, Renderer2, EventEmitter } from '@angular/core';
 import { CardViewModel, CardColor } from './dashboard.model';
 import { StartupService } from '../core/startup.service';
 
@@ -12,6 +12,7 @@ declare var Chart: any;
 export class DashboardCardComponent implements OnInit {
 
   @Input() card: CardViewModel;
+  @Output() inspect = new EventEmitter<CardViewModel>();
   color: string;
   positiveStats: string;
   cardSettings: any;
@@ -75,9 +76,13 @@ export class DashboardCardComponent implements OnInit {
           data: Object.values(this.card.StatisticsDetail)
         }],
         options: {
-          respnsive: true
+          responsive: true
         }
       }
     });
+  }
+
+  onInspect() {
+    this.inspect.emit(this.card);
   }
 }

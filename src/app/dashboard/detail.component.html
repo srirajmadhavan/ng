@@ -54,14 +54,14 @@
                     <span class="filtrable">Last month</span>
                   </li>
                 </ul>
-                <select class="mdb-select colorful-select dropdown-info initialized">
+                <select class="mdb-select colorful-select dropdown-info initialized" name="selectedRange" (change)="onRangeChange($event.target.value)">
                   <option value="" disabled="" selected="">Choose time period</option>
+                  <option value="0">Year To Date</option>
                   <option value="1">Today</option>
                   <option value="2">Yesterday</option>
                   <option value="3">Last 7 days</option>
-                  <option value="3">Last 30 days</option>
-                  <option value="3">Last week</option>
-                  <option value="3">Last month</option>
+                  <option value="4">Last 30 days</option>
+                  <option value="5">Last month</option>
                 </select>
               </div>
 

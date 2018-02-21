@@ -25,6 +25,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   public cardViewModel: CardViewModel[] = [];
 
+  public inspectingCards: CardViewModel[] = [];
+
+  public switch = false;
+
   constructor(private modalService: ModalService, private http: HttpService, private _signalRService: SignalRService) {
     const cardEvents = ['leadCountCard', 'applicationLaunchCountCard'];
     this._signalRService.listener.subscribe((s: SignalRConnection) => {
@@ -41,6 +45,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.signalData.unsubscribe();
+  }
+
+  onInspect(card: CardViewModel) {
+    this.inspectingCards = [];
+    this.inspectingCards.push(card);
+    this.switch = !this.switch;
   }
 
   openModal(id: string) {
