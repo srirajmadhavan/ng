@@ -30,8 +30,7 @@
         "../node_modules/mdbootstrap/js/popper.min.js",
         "../node_modules/mdbootstrap/js/bootstrap.min.js",
         "./assets/mdb.min.js",
-        "./assets/odometer.min.js",
-        "./assets/script.js"
+        "./assets/odometer.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
