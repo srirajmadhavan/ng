@@ -20,7 +20,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "../node_modules/mdbootstrap/css/style.css",
+        "./assets/css/preload.css",
         "./assets/odometer-theme-default.css",
         "styles.css"
       ],
@@ -29,7 +29,7 @@
         "../node_modules/signalr/jquery.signalR.js",
         "../node_modules/mdbootstrap/js/popper.min.js",
         "../node_modules/mdbootstrap/js/bootstrap.min.js",
-        "../node_modules/mdbootstrap/js/mdb_u.min.js",
+        "./assets/mdb.min.js",
         "./assets/odometer.min.js"
       ],
       "environmentSource": "environments/environment.ts",
