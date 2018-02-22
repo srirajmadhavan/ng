@@ -21,6 +21,7 @@
       "prefix": "app",
       "styles": [
         "./assets/css/preload.css",
+        "../node_modules/font-awesome/css/font-awesome.min.css",
         "./assets/odometer-theme-default.css",
         "styles.css"
       ],
