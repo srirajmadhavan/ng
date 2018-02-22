@@ -9,6 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "build-prod": "ng build --prod --aot=false",
     "extract-translations": "ngx-translate-extract --input ./src --output ./src/assets/i18n/en.json --clean --sort --format namespaced-json --marker _"
   },
   "private": true,

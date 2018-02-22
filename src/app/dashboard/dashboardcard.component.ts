@@ -12,7 +12,7 @@ declare var Chart: any;
 export class DashboardCardComponent implements OnInit {
 
   @Input() card: CardViewModel;
-  @Output() inspect = new EventEmitter<CardViewModel>();
+  @Output() inspect = new EventEmitter<number>();
   color: string;
   positiveStats: string;
   cardSettings: any;
@@ -83,6 +83,6 @@ export class DashboardCardComponent implements OnInit {
   }
 
   onInspect() {
-    this.inspect.emit(this.card);
+    this.inspect.emit(this.card.Id);
   }
 }

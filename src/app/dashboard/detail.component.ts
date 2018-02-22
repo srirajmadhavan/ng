@@ -21,8 +21,8 @@ export class DetailComponent implements OnInit, OnChanges {
     private http: HttpService) {
   }
 
-  @Input() public cards: CardViewModel[];
-  @Input() public switch: boolean;
+  @Input() public allCards: CardViewModel[];
+  @Input() public selectedCardId?: number;
 
   selectedRange: TimeRange = TimeRange.YearToDate;
 
@@ -43,7 +43,7 @@ export class DetailComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const value: SimpleChange = changes.switch;
+    const value: SimpleChange = changes.selectedCardId;
     if (value && !value.firstChange) {
       this.createChart();
     }
@@ -51,14 +51,13 @@ export class DetailComponent implements OnInit, OnChanges {
 
   createChart(timeRange: TimeRange = TimeRange.YearToDate) {
     let label = '';
-    this.cards.forEach((v: CardViewModel, i) => {
+    this.allCards.forEach((v: CardViewModel, i) => {
       label = v.Name;
       this.http
         .get('http://masterapi-forall.azurewebsites.net/default/detail?range=' + this.selectedRange, { throbbing: false })
         .map((res: Response) => res.json())
         .toPromise()
         .then((data: any) => {
-          console.log(data);
           this.lineChartMain.data.datasets = [];
           this.lineChartMain.update();
           this.lineChartMain.data.labels = Object.keys(data);
