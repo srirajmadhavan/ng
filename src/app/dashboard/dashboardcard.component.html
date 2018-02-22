@@ -5,7 +5,7 @@
         <i class="fa fa-{{cardSettings?.faicon}} {{color}}"></i>
         <div class="data">
           <p>{{card.Name}}</p>
-          <h4 class="font-bold dark-grey-text">
+          <h4 class="font-bold dark-grey-text text-center">
             <app-counter [value]="card.Count"></app-counter>
           </h4>
         </div>
@@ -26,17 +26,17 @@
       </div>
     </div>
     <div class="face back">
-      <div class="admin-up" (click)="flipCard()">
-        <i class="fa fa-{{cardSettings?.faicon}} {{color}}"></i>
-        <div class="data">
+      <div class="admin-up">
+        <div class="data float-left">
           <p>{{card.Name}}</p>
-          <h4 class="font-bold dark-grey-text">
+          <h4 class="font-bold dark-grey-text text-center">
             <app-counter [value]="card.Count"></app-counter>
           </h4>
         </div>
+        <i class="fa fa-{{cardSettings?.faicon}} {{color}}  float-right"></i>
       </div>
-      <div class="card-body" style="padding-top:0rem;">
-       <canvas [id]="'lineChart-'+card.Id" width="610" height="125" style="position:relative; top:-30px;"></canvas>
+      <div class="card-body" style="padding-top:0rem;"  (click)="flipCard()">
+        <canvas [id]="'lineChart-'+card.Id" width="610" height="125" style="position:relative; top:-30px;"></canvas>
       </div>
     </div>
   </div>

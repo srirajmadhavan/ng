@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   public cardViewModel: CardViewModel[] = [];
 
-  public inspectingCardId: number;
+  public inspectingCardId: number[] = [];
 
   constructor(private modalService: ModalService, private http: HttpService, private _signalRService: SignalRService) {
     const cardEvents = ['leadCountCard', 'applicationLaunchCountCard', 'locationLogCountCard', 'ctiCountCard'];
@@ -46,7 +46,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   onInspect(cardId: number) {
-    this.inspectingCardId = cardId;
+    this.inspectingCardId = [];
+    this.inspectingCardId.push(cardId);
   }
 
   openModal(id: string) {

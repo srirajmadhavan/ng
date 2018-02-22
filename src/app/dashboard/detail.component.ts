@@ -1,11 +1,12 @@
 import {
-  Component, OnInit, Input, OnChanges, Renderer2, ElementRef, SimpleChanges, SimpleChange
+  Component, OnInit, Input, OnChanges, Renderer2, ElementRef, SimpleChanges, SimpleChange, AfterViewInit, NgZone
 } from '@angular/core';
-import { CardViewModel } from './dashboard.model';
+import { CardViewModel, TimeRange, ChartDataSet } from './dashboard.model';
 import { StartupService } from '../core/startup.service';
 import { HttpService } from '../core/http.service';
 import { Response } from '@angular/http';
-
+// import * as jQuery from 'jquery';
+declare var jQuery: any;
 declare var Chart: any;
 
 @Component({
@@ -13,20 +14,22 @@ declare var Chart: any;
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.css']
 })
-export class DetailComponent implements OnInit, OnChanges {
+export class DetailComponent implements OnInit, OnChanges, AfterViewInit {
 
   constructor(private startupService: StartupService,
     private renderer: Renderer2,
     private element: ElementRef,
-    private http: HttpService) {
+    private http: HttpService,
+    private zone: NgZone) {
   }
 
   @Input() public allCards: CardViewModel[];
-  @Input() public selectedCardId?: number;
+  @Input() public selectedCardId: number[];
 
   selectedRange: TimeRange = TimeRange.YearToDate;
 
   lineChartMain: any;
+  junk = 0;
 
   ngOnInit() {
     const ctxl = this.element.nativeElement.querySelector('#lineChart-main');
@@ -36,9 +39,21 @@ export class DetailComponent implements OnInit, OnChanges {
         labels: [],
         datasets: [],
         options: {
-          responsive: true
+          responsive: true,
+          legend: false
         }
       }
+    });
+  }
+
+  ngAfterViewInit() {
+    // this.zone.runOutsideAngular(() => {
+    // jQuery('.mdb-select').material_select({});
+    // });
+    const that = this;
+    jQuery('.mdb-select').material_select({});
+    jQuery('.mdb-select').change(function () {
+      if (that.junk === 0) { that.onRangeChange(+jQuery(this).val()); that.junk = 1; }
     });
   }
 
@@ -50,19 +65,28 @@ export class DetailComponent implements OnInit, OnChanges {
   }
 
   createChart(timeRange: TimeRange = TimeRange.YearToDate) {
+    this.lineChartMain.data.datasets = [];
+    this.lineChartMain.update();
     let label = '';
-    this.allCards.forEach((v: CardViewModel, i) => {
+    let id = 0;
+
+    const chartingCards = this.allCards.filter((v, i) => {
+      return this.selectedCardId.includes(v.Id);
+    });
+
+    chartingCards.forEach((v: CardViewModel, i) => {
       label = v.Name;
+      id = v.Id;
+
       this.http
         .get('http://masterapi-forall.azurewebsites.net/default/detail?range=' + this.selectedRange, { throbbing: false })
         .map((res: Response) => res.json())
         .toPromise()
         .then((data: any) => {
-          this.lineChartMain.data.datasets = [];
-          this.lineChartMain.update();
           this.lineChartMain.data.labels = Object.keys(data);
-          this.lineChartMain.data.datasets.push(new ChartDataSet(label, Object.values(data)));
+          this.lineChartMain.data.datasets.push(new ChartDataSet(id, label, Object.values(data)));
           this.lineChartMain.update();
+          this.junk = 0;
         })
         .catch((err: any) => Promise.resolve());
     });
@@ -70,27 +94,16 @@ export class DetailComponent implements OnInit, OnChanges {
 
   onRangeChange(value) {
     this.selectedRange = value;
+    this.createChart();
   }
-}
 
-enum TimeRange {
-  YearToDate = 0,
-  Today = 1,
-  Yesterday = 2,
-  LastSevenDays = 3,
-  LastThirtyDays = 4,
-  LastMonth = 5,
-}
-
-class ChartDataSet {
-  fillColor = '#fff';
-  backgroundColor = 'rgba(255, 255, 255, .3)';
-  borderColor = 'rgba(255, 99, 132)';
-  label: string;
-  data: number[];
-
-  constructor(label: string, data: number[]) {
-    this.label = label;
-    this.data = data;
+  onCheckChange(e, val) {
+    if (e.target.checked) {
+      if (!this.selectedCardId.includes(e.target.value) || !this.selectedCardId) { this.selectedCardId.push(+e.target.value); }
+    } else {
+      const index = this.selectedCardId.indexOf(+e.target.value);
+      this.selectedCardId.splice(index, 1);
+    }
+    this.createChart();
   }
 }

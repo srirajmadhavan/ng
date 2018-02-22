@@ -7,11 +7,11 @@
     <div class="row">
 
       <!--Grid column-->
-      <div class="col-xl-5 col-lg-12 mr-0">
+      <div class="col-xl-4 col-lg-12 mr-0">
 
         <!--Card image-->
         <div class="view gradient-card-header blue-gradient">
-          <h2 class="h2-responsive mb-0">Location Log</h2>
+          <h2 class="h2-responsive mb-0">Inspect</h2>
         </div>
         <!--/Card image-->
         <!--Card content-->
@@ -27,34 +27,7 @@
               <p class="lead">
                 <span class="badge info-color p-2">Data range</span>
               </p>
-              <div class="select-wrapper mdb-select colorful-select dropdown-info">
-                <span class="caret">▼</span>
-                <input type="text" class="select-dropdown" readonly="true" data-activates="select-options-924cba7a-976a-426b-af1a-285e0460b20d"
-                  value="Choose time period">
-                <ul id="select-options-924cba7a-976a-426b-af1a-285e0460b20d" class="dropdown-content select-dropdown ">
-                  <li class="disabled ">
-                    <span class="filtrable">Choose time period</span>
-                  </li>
-                  <li class="">
-                    <span class="filtrable">Today</span>
-                  </li>
-                  <li class="">
-                    <span class="filtrable">Yesterday</span>
-                  </li>
-                  <li class="">
-                    <span class="filtrable">Last 7 days</span>
-                  </li>
-                  <li class="">
-                    <span class="filtrable">Last 30 days</span>
-                  </li>
-                  <li class="">
-                    <span class="filtrable">Last week</span>
-                  </li>
-                  <li class="">
-                    <span class="filtrable">Last month</span>
-                  </li>
-                </ul>
-                <select class="mdb-select colorful-select dropdown-info initialized" name="selectedRange" (change)="onRangeChange($event.target.value)">
+                <select class="mdb-select" name="selectedRange" (change)="onRangeChange($event.target.value)">
                   <option value="" disabled="" selected="">Choose time period</option>
                   <option value="0">Year To Date</option>
                   <option value="1">Today</option>
@@ -63,7 +36,6 @@
                   <option value="4">Last 30 days</option>
                   <option value="5">Last month</option>
                 </select>
-              </div>
 
               <!--Date pickers-->
               <p class="lead mt-5">
@@ -85,10 +57,10 @@
             <!--/First column-->
 
             <!--Second column-->
-            <div class="col-md-6 text-center">
+            <div class="col-md-6 text-left pl-5">
                 <div class="form-group" *ngFor="let card of allCards">
-                    <input type="checkbox" id="card.Name">
-                    <label for="checkbox1">Classic checkbox</label>
+                    <input type="checkbox" [attr.id]="card.Name" (click)="onCheckChange($event)" [attr.value]="card.Id" [checked]="selectedCardId.includes(card.Id)"/>
+                    <label [attr.for]="card.Name">{{card.Name}}</label>
                 </div>
               <!--Summary-->
             </div>
@@ -100,11 +72,11 @@
       </div>
       <!--Grid column-->
       <!--Grid column-->
-      <div class="col-xl-7 col-lg-12 mb-r">
+      <div class="col-xl-8 col-lg-12 mb-r">
         <!--Card image-->
         <div class="view gradient-card-header indigo">
           <!-- Chart -->
-          <canvas id="lineChart-main" height="590" style="display: block; width: 1013px; height: 590px;" width="1013"></canvas>
+          <canvas id="lineChart-main" height="400" width="1013"></canvas>
         </div>
         <!--/Card image-->
       </div>
