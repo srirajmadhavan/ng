@@ -2,11 +2,17 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NotificationService } from '../core/notification/notification.service';
 import { SignalRService } from '../core/signalR.service';
 import { Subscription } from 'rxjs/Subscription';
+import { staggerTransition } from '../core/router-transition';
 
 @Component({
   selector: 'app-invitation',
   templateUrl: './invitation.component.html',
-  styleUrls: ['./invitation.component.css']
+  styleUrls: ['./invitation.component.css'],
+  animations: [staggerTransition],
+  // tslint:disable-next-line:use-host-property-decorator
+  host: {
+    '[@staggerTransition]': ''
+  }
 })
 export class InvitationComponent implements OnInit, OnDestroy {
   private signalData: Subscription;
@@ -20,7 +26,7 @@ export class InvitationComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.signalData.unsubscribe();
+    // this.signalData.unsubscribe();
   }
 
   showAlert(message: string, persist: boolean = false) {

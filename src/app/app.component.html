@@ -18,15 +18,22 @@
 </header>
 <main>
   <div class="container-fluid" [@routerTransition]="getState(o)">
-    <notification></notification>
-    <router-outlet #o="outlet"></router-outlet>
+    <!-- <div class="row">
+      <div class="col-xl-2">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-xl-10"> -->
+        <notification></notification>
+        <router-outlet #o="outlet"></router-outlet>
+      <!-- </div>
+    </div> -->
   </div>
 </main>
 <footer></footer>
 
 <modal id="throbber">
   <div class="modal" data-backdrop="static" role="dialog" style="position:absolute;top:30%; left:20%;">
-      <h1>{{blocking}}</h1>
+    <h1>{{blocking}}</h1>
     <style>
       .sk-folding-cube {
         margin: 20px auto;

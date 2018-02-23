@@ -3,7 +3,7 @@ import { staggerTransition } from '../core/router-transition';
 import { Http } from '@angular/http';
 import { ModalService } from '../core/modal/modal.service';
 import { HttpService } from '../core/http.service';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription, ISubscription } from 'rxjs/Subscription';
 import { SignalRService } from '../core/signalR.service';
 import { LogCount, CardViewModel } from './dashboard.model';
 import { Subject, SubjectSubscriber } from 'rxjs/Subject';
@@ -21,20 +21,28 @@ import { SignalRConnection } from 'ng2-signalr/src/services/connection/signalr.c
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 
-  private signalData = new Subject();
+  private signalData: ISubscription;
 
   public cardViewModel: CardViewModel[] = [];
 
   public inspectingCardId: number[] = [];
+  private cardEvents = ['leadCountCard', 'applicationLaunchCountCard', 'locationLogCountCard', 'ctiCountCard'];
 
   constructor(private modalService: ModalService, private http: HttpService, private _signalRService: SignalRService) {
-    const cardEvents = ['leadCountCard', 'applicationLaunchCountCard', 'locationLogCountCard', 'ctiCountCard'];
-    this._signalRService.listener.subscribe((s: SignalRConnection) => {
-      this.cardViewModel = [];
-      cardEvents.forEach(card => {
-        this.cardViewModel.push(new CardViewModel(s.listenFor(card)));
+    if (this._signalRService.connected) {
+      this.setupSignalSubscription();
+    } else {
+      this.signalData = this._signalRService.listener.subscribe((s: SignalRConnection) => {
+        this.setupSignalSubscription();
       });
-      s.invoke('dashboardpoke').then((p) => { });
+    }
+  }
+
+  setupSignalSubscription() {
+    this.cardViewModel = [];
+    this.cardEvents.forEach(card => {
+      this.cardViewModel.push(new CardViewModel(this._signalRService.connection.listenFor(card)));
+      this._signalRService.connection.invoke('dashboardpoke').then((p) => { });
     });
   }
 

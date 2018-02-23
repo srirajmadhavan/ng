@@ -27,7 +27,7 @@ export class SubscriptionComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.numberSub.unsubscribe();
     this.customSub.unsubscribe();
-    this.signalData.unsubscribe();
+    // this.signalData.unsubscribe();
   }
 
   ngOnInit() {
