@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  signalUrl: 'http://masterapi-forall.azurewebsites.net/'
 };

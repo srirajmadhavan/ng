@@ -1,0 +1,16 @@
+<agm-map id="map-control" 
+[latitude]="defaultlatitude"
+[longitude]="defaultlongitude"
+[streetViewControl]="false"
+[clickableIcons]="false"
+[zoom]="4"
+[zoomControl]="false"
+[mapTypeControl]="false"
+(mapReady)="onReady($event)"
+(idle)="onIdle($event)">
+<!-- <agm-marker-cluster [imagePath]="'map-app/src/assets/img/m'"> -->
+    <agm-marker *ngFor="let pos of locations"
+    [latitude]="pos.lattitude"
+    [longitude]="pos.longitude"></agm-marker>
+<!-- </agm-marker-cluster>  -->
+</agm-map>

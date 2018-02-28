@@ -27,6 +27,7 @@ import { SharedModule } from './shared/shared.module';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { HttpService } from './core/http.service';
 import { StartupService } from './core/startup.service';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -100,9 +101,7 @@ export function startupServiceFactory(startupService: StartupService) {
 export function createSignalRConfig(): SignalRConfiguration {
   const c = new SignalRConfiguration();
   c.hubName = 'usageLogTicker';
-  // c.qs = { user: 'donald' };
-  c.url = 'http://masterapi-forall.azurewebsites.net/';
-  // c.url = 'http://localhost:81/';
+  c.url = environment.signalUrl;
   c.logging = false;
   return c;
 }

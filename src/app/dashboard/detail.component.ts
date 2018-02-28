@@ -30,6 +30,7 @@ export class DetailComponent implements OnInit, OnChanges, AfterViewInit {
 
   lineChartMain: any;
   junk = 0;
+  graphMode = false;
 
   ngOnInit() {
     const ctxl = this.element.nativeElement.querySelector('#lineChart-main');
@@ -47,11 +48,11 @@ export class DetailComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // this.zone.runOutsideAngular(() => {
-    // jQuery('.mdb-select').material_select({});
-    // });
     const that = this;
     jQuery('.mdb-select').material_select({});
+    jQuery('#map-graph-toggle').change(function () {
+      that.graphMode = !that.graphMode;
+    });
     jQuery('.mdb-select').change(function () {
       if (that.junk === 0) { that.onRangeChange(+jQuery(this).val()); that.junk = 1; }
     });

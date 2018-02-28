@@ -1,47 +1,44 @@
-<nav class="navbar navbar-light bg-dark rounded-0">
+<nav class="navbar navbar-expand-lg navbar-dark indigo scrolling-navbar">
   <a class="navbar-brand" href="#">
-     
-      <div class="loader {{temperature}}">
-          <div class="inner one"></div>
-          <div class="inner two"></div>
-          <div class="inner three"></div>
-        </div>
-    <!-- <span class="text-uppercase">App Name</span> -->
+    <div class="loader {{temperature}}">
+      <div class="inner one"></div>
+      <div class="inner two"></div>
+      <div class="inner three"></div>
+    </div>
   </a>
-
-  <ul class="nav justify-content-end">
-    <li class="nav-item nav-link ">
-      <select  class="browser-default form-control form-control-sm" (change)="onLanguage($event.target.value)">
-          <option value="en">English</option>
-          <option value="fr">French</option>
-        </select>
+  <ul class="nav ml-auto">
+    <li class="nav-item">
+      <select class="browser-default form-control form-control-sm" (change)="onLanguage($event.target.value)">
+        <option value="en">English</option>
+        <option value="fr">French</option>
+      </select>
     </li>
     <li class="nav-item">
-      <a class="nav-link active" href="#">
-        <i class="fa fa-comment-o fa-2x"></i>
+      <a class="active" href="#">
+        <i class="fa fa-comment-o fa-2x white-text"></i>
         <span class="badge badge-danger notification-count">2</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">
-        <i class="fa fa-bell fa-2x"></i>
+      <a href="#">
+        <i class="fa fa-bell fa-2x white-text"></i>
         <span class="badge badge-danger notification-count">2</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">
-        <i class="fa fa-envelope-open-o fa-2x"></i>
+      <a href="#">
+        <i class="fa fa-envelope-open-o fa-2x white-text"></i>
         <span class="badge badge-danger notification-count">2</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link " href="#">
-        <i class="fa fa-th fa-2x"></i>
+      <a class="" href="#">
+        <i class="fa fa-th fa-2x white-text"></i>
         <span class="badge badge-danger notification-count">2</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">
+      <a href="#">
         <!-- <i class="fa fa-user-circle-o fa-2x"></i> -->
         <img src="{{user.avatar}}" class="rounded-circle" />
         <span class="badge badge-danger notification-count">2</span>

@@ -13,7 +13,7 @@ import { SignalRService } from '../../core/signalR.service';
 export class NavComponent implements OnInit {
   user: User;
   private signalData: ISubscription;
-  private temperature = 'cold';
+  public temperature = 'cold';
 
   constructor(private startupService: StartupService, private translateService: TranslateService,
     private _signalRService: SignalRService) { }
