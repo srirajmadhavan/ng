@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  signalUrl: 'http://localhost:81/'
+  signalUrl: 'http://localhost:81/',
+  api: 'http://localhost:81/'
 };

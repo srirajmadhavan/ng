@@ -8,6 +8,8 @@ import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 import { User } from './models';
 import { HttpService } from './http.service';
+import { environment } from '../../environments/environment';
+
 
 @Injectable()
 export class StartupService {
@@ -19,12 +21,12 @@ export class StartupService {
         this._startupData = null;
 
         return this.http
-            .get('http://masterapi-forall.azurewebsites.net/default/init', { throbbing: false })
+            .get('default/init', { throbbing: false })
             .map((res: Response) => res.json())
             .toPromise()
             .then((data: any) => {
                 this._startupData = data;
-                console.log(data);
+                if (!environment.production) { console.log(data); }
             })
             .catch((err: any) => Promise.resolve());
     }

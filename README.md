@@ -35,3 +35,12 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 . Toastr - through page change
 
 git push origin master
+
+var evt = new Event('input', {
+        bubbles: true
+    });
+
+    var input = document.querySelector("div.selectable-text");
+    input.innerHTML = "test";
+    input.dispatchEvent(evt);
+document.querySelector('[data-icon="send"]').click()

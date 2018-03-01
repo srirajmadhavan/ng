@@ -7,6 +7,7 @@ import 'rxjs/add/operator/finally';
 import { Http, XHRBackend, RequestOptions, Request, RequestOptionsArgs, Response, Headers } from '@angular/http';
 import { ModalService } from './modal/modal.service';
 import { RequestArgsCustom } from './models';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class HttpService extends Http {
@@ -17,20 +18,24 @@ export class HttpService extends Http {
     super(backend, defaultOptions);
   }
 
+  createUrl(url) {
+    return environment.api + url;
+  }
+
   get(url: string, options?: RequestArgsCustom): Observable<Response> {
-    return this.intercept(super.get(url, options), options);
+    return this.intercept(super.get(this.createUrl(url), options), options);
   }
 
   post(url: string, body: string, options?: RequestArgsCustom): Observable<Response> {
-    return this.intercept(super.post(url, body, this.getRequestOptionArgs(options)));
+    return this.intercept(super.post(this.createUrl(url), body, this.getRequestOptionArgs(options)));
   }
 
   put(url: string, body: string, options?: RequestArgsCustom): Observable<Response> {
-    return this.intercept(super.put(url, body, this.getRequestOptionArgs(options)));
+    return this.intercept(super.put(this.createUrl(url), body, this.getRequestOptionArgs(options)));
   }
 
   delete(url: string, options?: RequestArgsCustom): Observable<Response> {
-    return this.intercept(super.delete(url, options));
+    return this.intercept(super.delete(this.createUrl(url), options));
   }
 
   getRequestOptionArgs(options?: RequestArgsCustom): RequestOptionsArgs {
@@ -42,7 +47,7 @@ export class HttpService extends Http {
   }
 
   intercept(observable: Observable<Response>, options?: RequestArgsCustom): Observable<Response> {
-    console.log('In the intercept routine..');
+    if (!environment.production) { console.log('In the intercept routine..'); }
     if (options.throbbing) {
       this.modalService.open('throbber');
       this.pendingRequests++;
@@ -50,12 +55,12 @@ export class HttpService extends Http {
     return observable
       .catch(this.handleError)
       .do((res: Response) => {
-        console.log('Response: ' + res);
+        if (!environment.production) { console.log('Response: ' + res); }
       }, (err: any) => {
-        console.log('Caught error: ' + err);
+        if (!environment.production) { console.log('Caught error: ' + err); }
       })
       .finally(() => {
-        console.log('finally');
+        if (!environment.production) { console.log('finally'); }
         if (options.throbbing) {
           this.pendingRequests--;
           if (this.pendingRequests === 0) { this.modalService.close('throbber'); }
