@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { StartupService } from '../../core/startup.service';
 import { User } from '../../core/models';
 import { TranslateService } from '@ngx-translate/core';
@@ -16,15 +16,17 @@ export class NavComponent implements OnInit {
   public temperature = 'cold';
 
   constructor(private startupService: StartupService, private translateService: TranslateService,
-    private _signalRService: SignalRService) { }
+    private _signalRService: SignalRService, private renderer: Renderer2) { }
 
   ngOnInit() {
     this.user = this.startupService.startupData.data;
     this._signalRService.connectionStatus.subscribe((s) => {
       if (s === 'disconnected') {
         this.temperature = 'dead';
+        this.renderer.addClass(document.body, 'dead');
       } else {
         this.temperature = 'cold';
+        this.renderer.removeClass(document.body, 'dead');
       }
     });
     // this.signalData = this._signalRService.data.subscribe((s) => {
@@ -32,16 +34,16 @@ export class NavComponent implements OnInit {
     // });
   }
 
-  makeHot() {
-    this.temperature = 'hot';
-    setTimeout(() => {
-      this.temperature = 'cold';
-    }, 3000);
-  }
+  // makeHot() {
+  //   this.temperature = 'hot';
+  //   setTimeout(() => {
+  //     this.temperature = 'cold';
+  //   }, 3000);
+  // }
 
-  makeDead() {
-    this.temperature = 'dead';
-  }
+  // makeDead() {
+  //   this.temperature = 'dead';
+  // }
 
   onLanguage(language: string) {
     this.translateService.setDefaultLang(language);

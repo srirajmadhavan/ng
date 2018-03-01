@@ -1,12 +1,10 @@
 import {
-  Component, OnInit, Input, OnChanges, Renderer2, ElementRef, SimpleChanges, SimpleChange, AfterViewInit, NgZone
+  Component, OnInit, Input, OnChanges, ElementRef, SimpleChanges, SimpleChange
 } from '@angular/core';
 import { CardViewModel, TimeRange, ChartDataSet } from './dashboard.model';
 import { StartupService } from '../core/startup.service';
 import { HttpService } from '../core/http.service';
 import { Response } from '@angular/http';
-// import * as jQuery from 'jquery';
-declare var jQuery: any;
 declare var Chart: any;
 
 @Component({
@@ -14,13 +12,11 @@ declare var Chart: any;
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.css']
 })
-export class DetailComponent implements OnInit, OnChanges, AfterViewInit {
+export class DetailComponent implements OnInit, OnChanges {
 
   constructor(private startupService: StartupService,
-    private renderer: Renderer2,
     private element: ElementRef,
-    private http: HttpService,
-    private zone: NgZone) {
+    private http: HttpService) {
   }
 
   @Input() public allCards: CardViewModel[];
@@ -29,7 +25,6 @@ export class DetailComponent implements OnInit, OnChanges, AfterViewInit {
   selectedRange: TimeRange = TimeRange.YearToDate;
 
   lineChartMain: any;
-  junk = 0;
   graphMode = false;
 
   ngOnInit() {
@@ -47,15 +42,8 @@ export class DetailComponent implements OnInit, OnChanges, AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
-    const that = this;
-    jQuery('.mdb-select').material_select({});
-    jQuery('#map-graph-toggle').change(function () {
-      that.graphMode = !that.graphMode;
-    });
-    jQuery('.mdb-select').change(function () {
-      if (that.junk === 0) { that.onRangeChange(+jQuery(this).val()); that.junk = 1; }
-    });
+  onMapGraphToggle(value) {
+    this.graphMode = !this.graphMode;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -80,21 +68,20 @@ export class DetailComponent implements OnInit, OnChanges, AfterViewInit {
       id = v.Id;
 
       this.http
-        .get('http://masterapi-forall.azurewebsites.net/default/detail?range=' + this.selectedRange, { throbbing: false })
+        .get('default/detail?range=' + this.selectedRange, { throbbing: false })
         .map((res: Response) => res.json())
         .toPromise()
         .then((data: any) => {
           this.lineChartMain.data.labels = Object.keys(data);
           this.lineChartMain.data.datasets.push(new ChartDataSet(id, label, Object.values(data)));
           this.lineChartMain.update();
-          this.junk = 0;
         })
         .catch((err: any) => Promise.resolve());
     });
   }
 
   onRangeChange(value) {
-    this.selectedRange = value;
+    this.selectedRange = +value;
     this.createChart();
   }
 

@@ -10,14 +10,18 @@ import { NotificationService } from './notification/notification.service';
 import { NotificationComponent } from './notification/notification.component';
 import { SignalRService } from './signalR.service';
 
+import { SelectComponent } from './md-control/select.component';
+import { ToggleComponent } from './md-control/toggle.component';
+import { DatePickerComponent } from './md-control/datepicker.component';
+
 @NgModule({
     imports: [
         CommonModule,
         HttpModule,
         RouterModule
     ],
-    exports: [PipesPipe, ModalComponent, NotificationComponent],
-    declarations: [ModalComponent, NotificationComponent, PipesPipe],
+    exports: [PipesPipe, ModalComponent, NotificationComponent, SelectComponent, ToggleComponent, DatePickerComponent],
+    declarations: [ModalComponent, NotificationComponent, PipesPipe, SelectComponent, ToggleComponent, DatePickerComponent],
     providers: [AppMenuService, ModalService, NotificationService, SignalRService]
 })
 export class CoreModule { }

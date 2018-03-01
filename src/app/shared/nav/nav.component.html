@@ -7,11 +7,13 @@
     </div>
   </a>
   <ul class="nav ml-auto">
-    <li class="nav-item">
-      <select class="browser-default form-control form-control-sm" (change)="onLanguage($event.target.value)">
-        <option value="en">English</option>
-        <option value="fr">French</option>
-      </select>
+    <li class="nav-item language-select">
+      <md-select (change)="onLanguage($event)" id="language-select">
+        <select class="mdb-select">
+          <option value="en">English</option>
+          <option value="fr">French</option>
+        </select>
+      </md-select>
     </li>
     <li class="nav-item">
       <a class="active" href="#">

@@ -27,32 +27,34 @@
               <p class="lead">
                 <span class="badge info-color p-2">Data range</span>
               </p>
-              <select class="mdb-select" name="selectedRange" (change)="onRangeChange($event.target.value)">
-                <option value="" disabled="" selected="">Choose time period</option>
-                <option value="0">Year To Date</option>
-                <option value="1">Today</option>
-                <option value="2">Yesterday</option>
-                <option value="3">Last 7 days</option>
-                <option value="4">Last 30 days</option>
-                <option value="5">Last month</option>
-              </select>
-
+              <md-select (change)="onRangeChange($event)" id="date-range">
+                <select class="mdb-select" name="selectedRange">
+                  <option value="" disabled="">Choose time period</option>
+                  <option value="0" selected="">Year To Date</option>
+                  <option value="1">Today</option>
+                  <option value="2">Yesterday</option>
+                  <option value="3">Last 7 days</option>
+                  <option value="4">Last 30 days</option>
+                  <option value="5">Last month</option>
+                </select>
+              </md-select>
               <!--Date pickers-->
               <p class="lead mt-5">
                 <span class="badge info-color p-2">Custom date</span>
               </p>
               <br>
               <div class="md-form">
-                <input placeholder="Selected date" type="text" id="from" class="form-control datepicker picker__input" readonly="" aria-haspopup="true"
-                  aria-expanded="false" aria-readonly="false" aria-owns="from_root">
-                <label for="date-picker-example" class="active">From</label>
+                <md-datepicker id="range-from">
+                  <input placeholder="Selected date" type="text" id="date-picker-from" class="form-control datepicker">
+                </md-datepicker>
+                <label for="date-picker-from" class="active">From</label>
               </div>
               <div class="md-form">
-                <input placeholder="Selected date" type="text" id="to" class="form-control datepicker picker__input" readonly="" aria-haspopup="true"
-                  aria-expanded="false" aria-readonly="false" aria-owns="to_root">
-                <label for="date-picker-example" class="active">To</label>
+                <md-datepicker id="range-to">
+                  <input placeholder="Selected date" type="text" id="date-picker-to" class="form-control datepicker">
+                </md-datepicker>
+                <label for="date-picker-to" class="active">To</label>
               </div>
-
             </div>
             <!--/First column-->
 
@@ -79,18 +81,20 @@
           <!-- Chart -->
           <canvas id="lineChart-main" height="25%" width="100%"></canvas>
         </div>
-        <div class="view gradient-card-header indigo animated h-100" id="map"  [ngClass]="{'d-none': graphMode}">
+        <div class="view gradient-card-header indigo animated h-100" id="map" [ngClass]="{'d-none': graphMode}">
           <!-- Map -->
           <app-map></app-map>
         </div>
-        <div class="switch text-center pt-4">
-          <label>
-            Graph
-            <input type="checkbox" id="map-graph-toggle">
-            <span class="lever"></span>
-            Map
-          </label>
-        </div>
+        <md-toggle (toggle)="onMapGraphToggle($event)" id="map-graph-toggle">
+          <div class="switch text-center pt-4">
+            <label>
+              Graph
+              <input type="checkbox">
+              <span class="lever"></span>
+              Map
+            </label>
+          </div>
+        </md-toggle>
         <!--/Card image-->
       </div>
       <!--Grid column-->

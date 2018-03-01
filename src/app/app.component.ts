@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { AppMenuService, MenuItem } from './core/app-menu.service';
 import { routerTransition } from './core/router-transition';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,7 +9,8 @@ import { SignalRService } from './core/signalR.service';
   selector: 'app-root',
   animations: [routerTransition],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
   title = 'app';
