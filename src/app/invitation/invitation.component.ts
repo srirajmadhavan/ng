@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../core/notification/notification.service';
 import { SignalRService } from '../core/signalR.service';
 import { Subscription } from 'rxjs/Subscription';
 import { staggerTransition } from '../core/router-transition';
+import { InvitationDataService } from './invitation.data.service';
 
 @Component({
   selector: 'app-invitation',
@@ -14,19 +15,17 @@ import { staggerTransition } from '../core/router-transition';
     '[@staggerTransition]': ''
   }
 })
-export class InvitationComponent implements OnInit, OnDestroy {
-  private signalData: Subscription;
+export class InvitationComponent implements OnInit {
+  public largeData: any[];
 
-  constructor(private notificationService: NotificationService, private _signalRService: SignalRService) { }
+  constructor(private notificationService: NotificationService, private _signalRService: SignalRService,
+    private _data: InvitationDataService) { }
 
   ngOnInit() {
-    // this.signalData = this._signalRService.data.subscribe((s) => {
-    //   console.log('Invitation component recieved a data change: ' + JSON.stringify(s));
-    // });
-  }
-
-  ngOnDestroy(): void {
-    // this.signalData.unsubscribe();
+    this._data.getLargeData()
+      .then((data) => {
+        this.largeData = data;
+      });
   }
 
   showAlert(message: string, persist: boolean = false) {

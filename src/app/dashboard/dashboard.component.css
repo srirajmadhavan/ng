@@ -8,3 +8,37 @@
 .card-wrapper{
     min-height: unset!important;
 }
+
+
+/* Extra small devices (portrait phones, less than 576px) XS*/ 
+@media (max-width: 575px) { 
+    .live-card-row {
+        min-height: 67rem;
+     }
+ }
+
+/*Small devices (landscape phones, 576px and up) SM*/
+@media (min-width: 576px) and (max-width: 767px) { 
+     .live-card-row {
+        min-height: 67rem;
+     }
+}
+
+/* Medium devices (tablets, 768px and up) MD*/
+@media (min-width: 768px) and (max-width: 991px) {
+    
+  }
+
+/* Large devices (desktops, 992px and up) LG*/
+@media (min-width: 992px) and (max-width: 1199px) { 
+    .live-card-row {
+        min-height: 34rem;
+     }
+ }
+
+/* Extra large devices (large desktops, 1200px and up) >LG*/
+@media (min-width: 1200px) { 
+    .live-card-row {
+        min-height: 20rem;
+     }
+ }

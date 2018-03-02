@@ -14,14 +14,16 @@ import { SelectComponent } from './md-control/select.component';
 import { ToggleComponent } from './md-control/toggle.component';
 import { DatePickerComponent } from './md-control/datepicker.component';
 
+import { VsForDirective } from './directive/vsFor';
+
 @NgModule({
     imports: [
         CommonModule,
         HttpModule,
         RouterModule
     ],
-    exports: [PipesPipe, ModalComponent, NotificationComponent, SelectComponent, ToggleComponent, DatePickerComponent],
-    declarations: [ModalComponent, NotificationComponent, PipesPipe, SelectComponent, ToggleComponent, DatePickerComponent],
+    exports: [PipesPipe, ModalComponent, NotificationComponent, SelectComponent, ToggleComponent, DatePickerComponent, VsForDirective],
+    declarations: [ModalComponent, NotificationComponent, PipesPipe, SelectComponent, ToggleComponent, DatePickerComponent, VsForDirective],
     providers: [AppMenuService, ModalService, NotificationService, SignalRService]
 })
 export class CoreModule { }

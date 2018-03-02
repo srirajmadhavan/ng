@@ -5,6 +5,7 @@ import { CoreModule } from '../core/core.module';
 import { RouterModule } from '@angular/router';
 import { InvitationRoutes } from './invitation.routes';
 import { SharedModule } from '../shared/shared.module';
+import { InvitationDataService } from './invitation.data.service';
 
 @NgModule({
   imports: [
@@ -13,6 +14,9 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule,
     RouterModule.forChild(InvitationRoutes)
   ],
-  declarations: [InvitationComponent]
+  declarations: [InvitationComponent],
+  providers:[
+    InvitationDataService
+  ]
 })
 export class InvitationModule { }
