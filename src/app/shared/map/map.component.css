@@ -1,11 +1,15 @@
 /* Extra small devices (portrait phones, less than 576px) XS*/ 
 @media (max-width: 575px) { 
-    
+    #map-control{
+        height:23rem;
+    }
  }
 
 /*Small devices (landscape phones, 576px and up) SM*/
 @media (min-width: 576px) and (max-width: 767px) { 
-
+    #map-control{
+        height:23rem;
+    }
 }
 
 /* Medium devices (tablets, 768px and up) MD*/
