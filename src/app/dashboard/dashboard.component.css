@@ -26,7 +26,9 @@
 
 /* Medium devices (tablets, 768px and up) MD*/
 @media (min-width: 768px) and (max-width: 991px) {
-    
+    .live-card-row {
+        min-height: 34rem;
+     }
   }
 
 /* Large devices (desktops, 992px and up) LG*/
